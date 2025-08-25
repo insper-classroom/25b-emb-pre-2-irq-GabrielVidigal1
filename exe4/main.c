@@ -11,9 +11,6 @@ const int LED_PIN_G = 6;
 volatile bool red_btn_event = false;
 volatile bool green_btn_event = false;
 
-bool red_led_state = false;
-bool green_led_state = false;
-
 void btn_callback(uint gpio, uint32_t events) {
   if (gpio == BTN_PIN_R && events == GPIO_IRQ_EDGE_FALL) {
     red_btn_event = true;
@@ -24,6 +21,9 @@ void btn_callback(uint gpio, uint32_t events) {
 
 int main() {
   stdio_init_all();
+
+  bool red_led_state = false;
+  bool green_led_state = false;
 
   gpio_init(LED_PIN_R);
   gpio_set_dir(LED_PIN_R, GPIO_OUT);
